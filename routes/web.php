@@ -11,6 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@home');
+
+Route::get('/messages/{message}','MessagesController@show');
+
+Route::post('/messages/create','MessagesController@create')
+->middleware('auth');
+
+Route::get('/acerca','PagesController@aboutUs');
+
+Auth::routes();
+
+Route::get('/{username}/follows','UserController@follows');
+Route::get('/{username}','UserController@show');
+Route::post('/{username}/follow','UserController@follow');
+
+//Route::get('/home', 'HomeController@index')->name('home');
